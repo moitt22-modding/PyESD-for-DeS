@@ -1,6 +1,8 @@
 use std::collections::HashMap;
 use std::env::current_exe;
 use std::fs::read_to_string;
+use crate::utils::read_def;
+
 pub struct ImportantCompData {
     pub highest_id: u32,
 
@@ -24,8 +26,7 @@ impl ImportantCompData {
             .expect("Error reading exe parent path")
             .join("FuncDefs.json");
 
-        let func_def_str = read_to_string(func_def_path).expect("Error reading func_def string");
-        let func_defs: HashMap<String, String> = serde_json::from_str(&*func_def_str).expect("Error parsing json");
+        let func_defs: HashMap<String, String> = read_def(func_def_path.to_str().expect("Error reading path").to_string());
 
 
         let even_def_path = current_exe()
@@ -34,8 +35,7 @@ impl ImportantCompData {
             .expect("Error reading exe parent path")
             .join("EventDefs.json");
 
-        let event_def_str = read_to_string(even_def_path).expect("Error reading func_def string");
-        let event_defs: HashMap<String, String> = serde_json::from_str(&*event_def_str).expect("Error parsing json");
+        let event_defs: HashMap<String, String> = read_def(even_def_path.to_str().expect("Error reading path").to_string());
 
         ImportantCompData {
             highest_id: 0,
