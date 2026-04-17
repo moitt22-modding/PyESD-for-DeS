@@ -17,9 +17,7 @@ pub fn read_def(path: String) -> HashMap<String, String> {
     
     for line in lines {
         if line != " " && line != "" {
-            print!("{}", line);
             let parts = line.split(":").map(|s|s.to_string()).collect::<Vec<String>>();
-            println!("{:?}", parts);
             map.insert(parts[0].replace(" ", "").clone(), parts[1].replace(" ", "").clone());
         }
     }
