@@ -1,0 +1,4 @@
+DebugEvent: Args: (String, EventName?)
+TalkToPlayer: Args: (int, TalkParamRow) (int, unk) (int, unk)
+InvokeEvent: Args: (int, EventId?)
+StopAttacking: Args: None
